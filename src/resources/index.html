@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VSCode Styled Webview</title>
+    <style>
+        /* VS Code styling for background, text, font, size, line-height, etc. */
+        body {
+            font-family: var(--vscode-editor-font-family, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif);
+            font-size: var(--vscode-editor-font-size, 14px); /* Use VS Code's editor font size */
+            line-height: var(--vscode-editor-line-height, 1.6); /* Use VS Code's line height */
+            color: var(--vscode-editor-foreground, #D4D4D4); /* Text color */
+            background-color: var(--vscode-editor-background, #1E1E1E); /* Background color */
+            margin: 0;
+            padding: 10px;
+        }
+
+        h3 {
+            color: var(--vscode-editor-foreground);
+        }
+
+        /* Apply the same text settings for other elements like input */
+        textarea {
+            width: 100%;
+            height: 90vh;
+            padding: 10px;
+            font-family: inherit;  /* Inherit font from body */
+            font-size: inherit;  /* Inherit font size */
+            line-height: inherit; /* Inherit line height */
+            letter-spacing: var(--vscode-editor-letter-spacing, 0px); /* Use VS Code's letter spacing */
+            background-color: var(--vscode-editor-background);
+            color: var(--vscode-editor-foreground);
+            border: 1px solid var(--vscode-editor-selectionBackground);
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: none;
+        }
+
+        /* Styling for the shadow text (used for typing practice) */
+        #shadowText {
+            color: var(--vscode-editor-lineNumberForeground);
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+            letter-spacing: inherit;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        /* Optional: Adjust the textarea's border and spacing */
+        textarea:focus {
+            border-color: var(--vscode-editor-selectionBackground);
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <h3>Timer: 0 | Sec Speed: 0 WPM | Accuracy: 0% | Mistakes: 0</h3>
+    <!-- <div id="shadowText"></div> -->
+    <textarea id="typingInput" placeholder="Start typing here..."></textarea>
+    <script>
+        const vscode = acquireVsCodeApi();
+        // const shadowText = document.getElementById('shadowText');
+        const typingInput = document.getElementById('typingInput');
+
+        window.addEventListener('message', event => {
+            const message = event.data;
+            if (message.command === 'setText') {
+                typingInput.textContent = message.text;
+            }
+        });
+
+        typingInput.addEventListener('input', () => {
+            // You can add logic for the typing interaction
+        });
+    </script>
+</body>
+</html>

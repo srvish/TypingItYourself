@@ -1,0 +1,67 @@
+.typing {
+  position: relative;
+  width: 100%;
+  overflow: auto;
+  border: 1px solid var(--vscode-editor-selectionBackground, #d4d4d4);
+  border-radius: 4px;
+  height: 89vh;
+}
+
+.typing-shadow-text,
+.typing-text {
+  width: 100%;
+  padding: 10px;
+  font-family: inherit; /* Inherit font from body */
+  font-size: 20px; /* Inherit font size */
+  line-height: inherit; /* Inherit line height */
+  letter-spacing: var(
+    --vscode-editor-letter-spacing,
+    0px
+  ); /* Use VS Code's letter spacing */
+  background-color: var(--vscode-editor-background);
+  color: var(--vscode-editor-foreground);
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.7;
+  white-space: pre-wrap;
+  overflow: initial;
+  height: 100%;
+}
+
+:focus {
+  outline: none;
+}
+
+.typing-blur {
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+  filter: blur(2px);
+}
+
+.typing-char-hide {
+  display: none;
+}
+
+.typing-char-invalid {
+  background-color: var(--vscode-errorForeground, #f11717);
+}
+
+.cursor {
+  border: 1px solid var(--vscode-editor-foreground, #ffffff);
+  animation: blink-border 1s infinite;
+}
+
+@keyframes blink-border {
+  50% {
+    border-color: transparent;
+  }
+  100% {
+    border-color: var(--vscode-editor-foreground, #ffffff);
+  }
+}

@@ -14,10 +14,18 @@
   "contributes": {
     "commands": [
       {
-        "command": "typingityourself.helloWorld",
-        "title": "Hello World"
+        "command": "typingityourself.typeItYourself",
+        "title": "Change to typing window",
+        "category": "Typing practice"
       }
-    ]
+    ],
+    "menus": {
+      "editor/context": [{
+        "command": "typingityourself.typeItYourself",
+        "when": "editorTextFocus",
+        "group": "navigation"
+      }]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
